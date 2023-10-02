@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+require(dotenv).config();
 
 const ImageUploader = () => {
   const [image, setImage] = useState(null);
@@ -9,11 +10,11 @@ const ImageUploader = () => {
     const file = event.target.files[0];
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('upload_preset', 'oluutkeu');
+    formData.append('upload_preset', process.env.UPLOAD_PRESET);
 
     try {
       const response = await axios.post(
-        'https://api.cloudinary.com/v1_1/dgziyn4xx/image/upload',
+        'https://api.cloudinary.com/v1_1/process.env.CLOUD_NAME/image/upload',
         formData
       );
 
